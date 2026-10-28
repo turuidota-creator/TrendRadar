@@ -169,13 +169,13 @@ jobs:
           S3_REGION: ${{ secrets.S3_REGION }}
           GITHUB_ACTIONS: true
         run: uv run python -m trendradar
-    - name: Commit crawler results
-   if: success()
-    run: |
-    git config user.name "github-actions[bot]"
-    git config user.email "github-actions[bot]@users.noreply.github.com"
-    git add index.html output
-    git diff --cached --quiet && echo "No result changes to commit" || (git commit -m "chore: update crawler results" && git push)
+      - name: Commit crawler results
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html output
+          git diff --cached --quiet && echo "No result changes to commit" || (git commit -m "chore: update crawler results" && git push)
     
 
       # --------------------------------------------------------------------------------
